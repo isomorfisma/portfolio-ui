@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michael's Personal Playground</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        
+        <div class="left-panel">
+            <div class="header-section">
+                <h1>MICHAEL<br>CHRISTIANTO</h1>
+                <h2>Computer Science Student @Padjadjaran University</h2>
+            </div>
+            
+            <div class="bio-section">
+                <p>I like to learn about backend systems & infrastructures.</p>
+                <p>Try interacting with this Web-Terminal Gateway bridged directly to my simple Go-based SSH Server!</p>
+            </div>
+            
+            <div class="action-section">
+                <a href="#" class="btn-download" target="_blank">[ Download Resume (PDF) ]</a>
+            </div>
+
+            <div class="flex-section">
+                <p class="terminal-hint">Or you can access the raw server directly from your local terminal:</p>
+                <div class="code-block">
+                    <code>ssh isomorfisma@111.222.333.444 -p 2222</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="terminal-header">
+                <div class="mac-buttons">
+                    <span class="close"></span>
+                    <span class="minimize"></span>
+                    <span class="maximize"></span>
+                </div>
+                <div class="terminal-title">isomorfisma@portfolio: ~</div>
+            </div>
+            <iframe src="http://localhost:8080" frameborder="0" class="terminal-frame"></iframe>
+        </div>
+
+    </div>
+</body>
+</html>
