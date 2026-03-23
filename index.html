@@ -16,8 +16,6 @@
 </head>
 <body>
 <div class="layout">
-
-  <!-- Left Panel -->
   <aside class="left">
     <div class="identity">
       <h1>Michael <span>Christianto</span></h1>
@@ -56,12 +54,8 @@
     </div>
 
     <hr class="divider">
-
-
-
   </aside>
 
-  <!-- Right Panel / Terminal -->
   <main class="right">
     <div class="terminal-window">
       <div class="titlebar">
@@ -107,7 +101,6 @@
         `;
       }, 2000);
     }).catch(() => {
-      // fallback for older browsers
       const el = document.createElement('textarea');
       el.value = cmd;
       el.style.position = 'fixed';
