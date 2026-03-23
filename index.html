@@ -1,52 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michael's Personal Playground</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Michael Christianto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        
-        <div class="left-panel">
-            <div class="header-section">
-                <h1>MICHAEL<br>CHRISTIANTO</h1>
-                <h2>Computer Science Student @Padjadjaran University</h2>
-            </div>
-            
-            <div class="bio-section">
-                <p>I like to learn about backend systems & infrastructures.</p>
-                <p>Try interacting with this Web-Terminal Gateway bridged directly to my simple Go-based SSH Server!</p>
-            </div>
-            
-            <div class="action-section">
-                <a href="#" class="btn-download" target="_blank">[ Download Resume (PDF) ]</a>
-            </div>
 
-            <div class="flex-section">
-                <p class="terminal-hint">Or you can access the raw server directly from your local terminal:</p>
-                <div class="code-block">
-                    <code>ssh isomorfisma@111.222.333.444 -p 2222</code>
-                </div>
-            </div>
-        </div>
+<div class="layout">
 
-        <div class="right-panel">
-            <div class="terminal-header">
-                <div class="mac-buttons">
-                    <span class="close"></span>
-                    <span class="minimize"></span>
-                    <span class="maximize"></span>
-                </div>
-                <div class="terminal-title">isomorfisma@portfolio: ~</div>
-            </div>
-            <iframe src="http://localhost:8080" frameborder="0" class="terminal-frame"></iframe>
-        </div>
-
+  <!-- Left Panel -->
+  <aside class="left">
+    <div class="identity">
+      <h1>Michael <span>Christianto</span></h1>
+      <p>Computer Science student @<em>Universitas Padjadjaran</em></p>
     </div>
+
+    <div class="bio" style="text-align: justify">
+      <p>I like to learn about <strong>backend systems</strong> and how infrastructures actually works under the hood.</p><br>
+      <p>I often use and vibe code with AI (including this site :D) but I know exactly what's happening under the hood. I make sure I could rebuild it from scratch if every model disappeared tomorrow.</p>
+      <p>The terminal on the right is a live gateway to a simple <strong>Go-based SSH server</strong> I built. Feel free to poke around.</p>
+    </div>
+      <div class="ssh-block">
+      <div class="label">// if the terminal on the right seems buggy, you can connect directly from yours:</div>
+      <div class="ssh-command">
+        <code id="ssh-cmd">ssh isomorfisma@111.222.333.444 -p 2222</code>
+        <button class="btn-copy" id="copy-btn" onclick="copySSH()" title="Copy to clipboard">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          copy
+        </button>
+      </div>
+    </div>
+    <hr class="divider">
+     <div class="ssh-block">
+    <div class="label">// or just download my cv</div>
+    <a href="#" class="btn-resume" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Download Resume
+    </a>
+    </div>
+
+    <hr class="divider">
+
+
+
+  </aside>
+
+  <!-- Right Panel / Terminal -->
+  <main class="right">
+    <div class="terminal-window">
+      <div class="titlebar">
+        <div class="traffic-lights">
+          <span class="tl tl-red"></span>
+          <span class="tl tl-amber"></span>
+          <span class="tl tl-green"></span>
+        </div>
+        <div class="titlebar-text">isomorfisma@portfolio: ~</div>
+      </div>
+      <iframe
+        src="http://localhost:8080"
+        frameborder="0"
+        class="terminal-frame"
+        title="Interactive terminal"
+      ></iframe>
+    </div>
+  </main>
+
+</div>
+
+<script>
+  function copySSH() {
+    const cmd = document.getElementById('ssh-cmd').textContent.trim();
+    const btn = document.getElementById('copy-btn');
+
+    navigator.clipboard.writeText(cmd).then(() => {
+      btn.classList.add('copied');
+      btn.innerHTML = `
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        copied
+      `;
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = `
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          copy
+        `;
+      }, 2000);
+    }).catch(() => {
+      // fallback for older browsers
+      const el = document.createElement('textarea');
+      el.value = cmd;
+      el.style.position = 'fixed';
+      el.style.opacity = '0';
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      btn.classList.add('copied');
+      btn.textContent = '✓ copied';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = `
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          copy
+        `;
+      }, 2000);
+    });
+  }
+</script>
+
 </body>
 </html>
